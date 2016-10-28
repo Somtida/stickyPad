@@ -19825,16 +19825,16 @@ var App = React.createClass({displayName: "App",
   render(){
     return(
       React.createElement("div", null, 
-        React.createElement("div", {class: "off-canvas-wrapper"}, 
-          React.createElement("div", {class: "off-canvas-wrapper-inner", "data-off-canvas-wrapper": true}, 
-            React.createElement("div", {class: "off-canvas position-left reveal-for-large", "data-off-canvas": true, "data-position": "left"}, 
+        React.createElement("div", {className: "off-canvas-wrapper"}, 
+          React.createElement("div", {className: "off-canvas-wrapper-inner", "data-off-canvas-wrapper": true}, 
+            React.createElement("div", {className: "off-canvas position-left reveal-for-large", "data-off-canvas": true, "data-position": "left"}, 
               React.createElement("div", {className: "row colum"}, 
-                React.createElement("br", null)
-                /*  Add Note Form */
+                React.createElement("br", null), 
+                 "Add Note Form"
               )
             ), 
-            React.createElement("div", {class: "off-canvas-content", "data-off-canvas-content": true}
-              /* NoteList */
+            React.createElement("div", {className: "off-canvas-content", "data-off-canvas-content": true}, 
+              "NoteList"
             )
           )
         )
