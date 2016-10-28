@@ -25,7 +25,6 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
 
 
-  }
 
   return true;
 });
