@@ -29,7 +29,19 @@ var App = React.createClass({
   render(){
     return(
       <div>
-        
+        <div class="off-canvas-wrapper">
+          <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+            <div class="off-canvas position-left reveal-for-large" data-off-canvas data-position="left">
+              <div className="row colum">
+                <br/>
+                {/*  Add Note Form */}
+              </div>
+            </div>
+            <div class="off-canvas-content" data-off-canvas-content>
+              {/* NoteList */}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
