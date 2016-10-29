@@ -7,7 +7,6 @@ var AppAPI = require('../utils/appAPI.js');
 var CHANGE_EVENT = 'change';
 
 var _contacts = [];
-var _contact_to_edit = '';
 
 var AppStore = assign({}, EventEmitter.prototype, {
   emitChange() {
