@@ -24,9 +24,10 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
-
+    case AppConstants.ADD_NOTE:
+      console.log('Adding Note...');
   }
- 
+
 
   return true;
 });
