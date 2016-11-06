@@ -5,9 +5,13 @@ var AppStore = require('../stores/AppStore');
 var Note = React.createClass({
   render(){
     return(
-      <div>
-        Note
-        {/* {this.props.note} */}
+      <div className="column">
+        <div className="note">
+          <div>
+            {this.props.note.text}
+
+          </div>
+        </div>
       </div>
     )
   }

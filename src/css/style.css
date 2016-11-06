@@ -1,3 +1,16 @@
 body {
   margin-top: 20px;
 }
+.note {
+  background-image: url('../images/note.png');
+  background-repeat: no-repeat;
+  width: 330px;
+  height: 270px;
+  position: relative;
+}
+.note div {
+  position: absolute;
+  top: 140px;
+  left: 90px;
+  font-weight: bold;
+}

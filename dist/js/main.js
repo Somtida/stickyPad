@@ -19876,9 +19876,13 @@ var AppStore = require('../stores/AppStore');
 var Note = React.createClass({displayName: "Note",
   render(){
     return(
-      React.createElement("div", null, 
-        "Note"
-        /* {this.props.note} */
+      React.createElement("div", {className: "column"}, 
+        React.createElement("div", {className: "note"}, 
+          React.createElement("div", null, 
+            this.props.note.text
+
+          )
+        )
       )
     )
   }
@@ -20014,7 +20018,7 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
-let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+//let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
 module.exports = {
   addNote(note) {
