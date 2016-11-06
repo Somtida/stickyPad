@@ -19898,7 +19898,7 @@ var Note = require('./Note');
 var NoteList = React.createClass({displayName: "NoteList",
   render(){
     return(
-      React.createElement("div", {className: "row small-up-2 medium-up-3 large-up-4"}, 
+      React.createElement("div", {className: "row small-up-1 medium-up-2 large-up-3"}, 
         
           this.props.notes.map((note, i) => {
             return (
@@ -20018,7 +20018,7 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
-//let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
 module.exports = {
   addNote(note) {

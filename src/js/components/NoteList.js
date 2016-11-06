@@ -6,7 +6,7 @@ var Note = require('./Note');
 var NoteList = React.createClass({
   render(){
     return(
-      <div className="row small-up-2 medium-up-3 large-up-4">
+      <div className="row small-up-1 medium-up-2 large-up-3">
         {
           this.props.notes.map((note, i) => {
             return (
