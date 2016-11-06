@@ -19764,12 +19764,20 @@ var AppActions = {
       note
     });
   },
+
+  receiveNotes(notes) {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.RECEIVE_NOTES,
+      notes
+    });
+  },
+
 }
 
 
 module.exports = AppActions;
 
-},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168}],165:[function(require,module,exports){
+},{"../constants/AppConstants":169,"../dispatcher/AppDispatcher":170}],165:[function(require,module,exports){
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
@@ -19805,11 +19813,12 @@ var AddNoteForm = React.createClass({displayName: "AddNoteForm",
 })
 
 module.exports = AddNoteForm;
-},{"../actions/AppActions":164,"../stores/AppStore":170,"react":163}],166:[function(require,module,exports){
+},{"../actions/AppActions":164,"../stores/AppStore":172,"react":163}],166:[function(require,module,exports){
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
-var AddNoteForm = require('./AddNoteForm.js');
+var AddNoteForm = require('./AddNoteForm');
+var NoteList = require('./NoteList');
 
 function getAppState() {
   return {
@@ -19848,7 +19857,7 @@ var App = React.createClass({displayName: "App",
               )
             ), 
             React.createElement("div", {className: "off-canvas-content", "data-off-canvas-content": true}, 
-              "NoteList"
+              React.createElement(NoteList, {notes: this.state.notes})
             )
           )
         )
@@ -19859,12 +19868,53 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"../actions/AppActions":164,"../stores/AppStore":170,"./AddNoteForm.js":165,"react":163}],167:[function(require,module,exports){
+},{"../actions/AppActions":164,"../stores/AppStore":172,"./AddNoteForm":165,"./NoteList":168,"react":163}],167:[function(require,module,exports){
+var React = require('react');
+var AppActions = require('../actions/AppActions');
+var AppStore = require('../stores/AppStore');
+
+var Note = React.createClass({displayName: "Note",
+  render(){
+    return(
+      React.createElement("div", null, 
+        "Note"
+        /* {this.props.note} */
+      )
+    )
+  }
+})
+
+module.exports = Note;
+},{"../actions/AppActions":164,"../stores/AppStore":172,"react":163}],168:[function(require,module,exports){
+var React = require('react');
+var AppActions = require('../actions/AppActions');
+var AppStore = require('../stores/AppStore');
+var Note = require('./Note');
+
+var NoteList = React.createClass({displayName: "NoteList",
+  render(){
+    return(
+      React.createElement("div", {className: "row small-up-2 medium-up-3 large-up-4"}, 
+        
+          this.props.notes.map((note, i) => {
+            return (
+              React.createElement(Note, {note: note, key: i})
+            )
+          })
+        
+      )
+    )
+  }
+})
+
+module.exports = NoteList;
+},{"../actions/AppActions":164,"../stores/AppStore":172,"./Note":167,"react":163}],169:[function(require,module,exports){
 module.exports = {
   ADD_NOTE: 'ADD_NOTE',
+  RECEIVE_NOTES: 'RECEIVE_NOTES',
 }
 
-},{}],168:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
@@ -19880,18 +19930,20 @@ var AppDispatcher = assign(new Dispatcher(), {
 
 module.exports = AppDispatcher;
 
-},{"flux":29,"object-assign":32}],169:[function(require,module,exports){
+},{"flux":29,"object-assign":32}],171:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var App = require('./components/App');
 var AppAPI = require('./utils/appAPI.js');
+
+AppAPI.getNotes();
 
 ReactDOM.render(
   React.createElement(App, null),
   document.getElementById('app')
 )
 
-},{"./components/App":166,"./utils/appAPI.js":171,"react":163,"react-dom":34}],170:[function(require,module,exports){
+},{"./components/App":166,"./utils/appAPI.js":173,"react":163,"react-dom":34}],172:[function(require,module,exports){
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var EventEmitter = require('events').EventEmitter;
@@ -19905,6 +19957,9 @@ var _notes = [];
 var AppStore = assign({}, EventEmitter.prototype, {
   addNote(note) {
     _notes.push(note);
+  },
+  setNote(notes) {
+    _notes = notes;
   },
   getNote() {
     return _notes;
@@ -19935,6 +19990,18 @@ AppDispatcher.register(function(payload) {
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
+
+    case AppConstants.RECEIVE_NOTES:
+      console.log('Receivinging Notes...');
+
+      //Store Save
+      AppStore.setNote(action.notes);
+
+      //API Save
+      // AppAPI.setNote(action.notes);
+
+      //Emit Change
+      AppStore.emit(CHANGE_EVENT);
   }
 
 
@@ -19943,7 +20010,7 @@ AppDispatcher.register(function(payload) {
 
 module.exports = AppStore;
 
-},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168,"../utils/appAPI.js":171,"events":1,"object-assign":32}],171:[function(require,module,exports){
+},{"../constants/AppConstants":169,"../dispatcher/AppDispatcher":170,"../utils/appAPI.js":173,"events":1,"object-assign":32}],173:[function(require,module,exports){
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
@@ -19957,8 +20024,22 @@ module.exports = {
       type: 'POST',
       contentType: 'application/json',
     })
+  },
+  getNotes() {
+    $.ajax({
+      url: `https://api.mlab.com/api/1/databases/stickypad/collections/notes?apiKey=${myAPIkey}`,
+      data: 'json',
+      cache: false,
+      success: function(data) {
+        console.log('data:',data);
+        AppActions.receiveNotes(data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }.bind(this),
+    })
   }
 
 }
 
-},{"../actions/AppActions":164}]},{},[169]);
+},{"../actions/AppActions":164}]},{},[171]);

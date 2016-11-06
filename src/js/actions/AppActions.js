@@ -8,6 +8,14 @@ var AppActions = {
       note
     });
   },
+
+  receiveNotes(notes) {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.RECEIVE_NOTES,
+      notes
+    });
+  },
+
 }
 
 
