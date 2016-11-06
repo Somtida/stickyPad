@@ -19931,6 +19931,7 @@ AppDispatcher.register(function(payload) {
       AppStore.addNote(action.note);
 
       //API Save
+      AppAPI.addNote(action.note);
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
@@ -19945,8 +19946,18 @@ module.exports = AppStore;
 },{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168,"../utils/appAPI.js":171,"events":1,"object-assign":32}],171:[function(require,module,exports){
 var AppActions = require('../actions/AppActions');
 
-module.exports = {
+//set apiKey
+let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
+module.exports = {
+  addNote(note) {
+    $.ajax({
+      url: `https://api.mlab.com/api/1/databases/stickypad/collections/notes?apiKey=${myAPIkey}`,
+      data: JSON.stringify(note),
+      type: 'POST',
+      contentType: 'application/json',
+    })
+  }
 
 }
 
