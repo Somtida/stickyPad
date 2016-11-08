@@ -18,7 +18,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
   getNote() {
     return _notes;
   },
-  removeNote(nodeId) {
+  removeNote(noteId) {
     let index = _notes.findIndex(x => x._id.$oid === noteId);
     _notes.splice(index,1);
   },

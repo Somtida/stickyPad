@@ -19982,8 +19982,9 @@ var AppStore = assign({}, EventEmitter.prototype, {
   getNote() {
     return _notes;
   },
-  removeNote(nodeId) {
-    return _notes;
+  removeNote(noteId) {
+    let index = _notes.findIndex(x => x._id.$oid === noteId);
+    _notes.splice(index,1);
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -20050,9 +20051,8 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
-// let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
-let myAPIkey = 'ru1s2ttVFYczQkbl9ec-ueSrdqEUmuA6';
 module.exports = {
   addNote(note) {
     $.ajax({
@@ -20075,7 +20075,21 @@ module.exports = {
         console.log(err);
       }.bind(this),
     })
-  }
+  },
+  removeNote(noteId) {
+    $.ajax({
+      url: `https://api.mlab.com/api/1/databases/stickypad/collections/notes/${noteId}?apiKey=${myAPIkey}`,
+      type: 'DELETE',
+      async: true,
+      timeout: 30000,
+      success: function(data) {
+        console.log('removed note');
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }.bind(this)
+    })
+  },
 
 }
 

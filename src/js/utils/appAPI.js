@@ -26,8 +26,19 @@ module.exports = {
       }.bind(this),
     })
   },
-  removeNotes(noteId) {
-
+  removeNote(noteId) {
+    $.ajax({
+      url: `https://api.mlab.com/api/1/databases/stickypad/collections/notes/${noteId}?apiKey=${myAPIkey}`,
+      type: 'DELETE',
+      async: true,
+      timeout: 30000,
+      success: function(data) {
+        console.log('removed note');
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }.bind(this)
+    })
   },
 
 }
