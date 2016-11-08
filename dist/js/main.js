@@ -19772,6 +19772,13 @@ var AppActions = {
     });
   },
 
+  removeNote(noteId) {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.REMOVE_NOTE,
+      noteId
+    });
+  },
+
 }
 
 
@@ -19875,7 +19882,7 @@ var AppStore = require('../stores/AppStore');
 
 var Note = React.createClass({displayName: "Note",
   removeNote(i, j){
-    console.log(i.$oid,j);
+    AppActions.removeNote(i.$oid);
 
   },
   render(){
@@ -19922,6 +19929,7 @@ module.exports = NoteList;
 module.exports = {
   ADD_NOTE: 'ADD_NOTE',
   RECEIVE_NOTES: 'RECEIVE_NOTES',
+  REMOVE_NOTE: 'REMOVE_NOTE',
 }
 
 },{}],170:[function(require,module,exports){
@@ -20011,6 +20019,20 @@ AppDispatcher.register(function(payload) {
 
       //API Save
       // AppAPI.setNote(action.notes);
+
+      //Emit Change
+      AppStore.emit(CHANGE_EVENT);
+
+      break;
+
+    case AppConstants.REMOVE_NOTE:
+      console.log('Removing Notes...');
+
+      //Store Save
+      AppStore.removeNote(action.noteId);
+
+      //API Save
+      AppAPI.removeNote(action.noteId);
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);

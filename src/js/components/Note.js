@@ -4,7 +4,7 @@ var AppStore = require('../stores/AppStore');
 
 var Note = React.createClass({
   removeNote(i, j){
-    console.log(i.$oid,j);
+    AppActions.removeNote(i.$oid);
 
   },
   render(){

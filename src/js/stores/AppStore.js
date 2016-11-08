@@ -60,6 +60,20 @@ AppDispatcher.register(function(payload) {
       AppStore.emit(CHANGE_EVENT);
 
       break;
+
+    case AppConstants.REMOVE_NOTE:
+      console.log('Removing Notes...');
+
+      //Store Save
+      AppStore.removeNote(action.noteId);
+
+      //API Save
+      AppAPI.removeNote(action.noteId);
+
+      //Emit Change
+      AppStore.emit(CHANGE_EVENT);
+
+      break;
   }
 
 

@@ -16,6 +16,13 @@ var AppActions = {
     });
   },
 
+  removeNote(noteId) {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.REMOVE_NOTE,
+      noteId
+    });
+  },
+
 }
 
 
