@@ -19800,20 +19800,22 @@ var AddNoteForm = React.createClass({displayName: "AddNoteForm",
   },
   render(){
     return(
-      React.createElement("div", null, 
+      React.createElement("div", {className: "content"}, 
         React.createElement("h5", null, "Add A Note"), 
         React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "row"}, 
+
             React.createElement("div", {className: "large-12 columns"}, 
               React.createElement("label", null, "Note Text", 
                 React.createElement("input", {type: "text", ref: "text", placeholder: "Enter Text..."})
               ), 
-              React.createElement("button", {className: "button"}, 
+              React.createElement("button", {className: "button info expand"}, 
                 "Add"
               )
             )
           )
-        )
+        ), 
+        React.createElement("span", {className: "alert round label"}, "Double Click on sticky Note to Remove")
       )
     )
   }
@@ -20051,8 +20053,9 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
-let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+// let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
+let myAPIkey = 'ru1s2ttVFYczQkbl9ec-ueSrdqEUmuA6';
 module.exports = {
   addNote(note) {
     $.ajax({

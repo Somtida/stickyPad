@@ -13,20 +13,22 @@ var AddNoteForm = React.createClass({
   },
   render(){
     return(
-      <div>
+      <div className="content">
         <h5>Add A Note</h5>
         <form onSubmit={this.onSubmit}>
           <div className="row">
+
             <div className="large-12 columns">
               <label>Note Text
                 <input type="text" ref="text" placeholder="Enter Text..."/>
               </label>
-              <button className="button">
+              <button className="button info expand">
                 Add
               </button>
             </div>
           </div>
         </form>
+        <span className="alert round label">Double Click on sticky Note to Remove</span>
       </div>
     )
   }

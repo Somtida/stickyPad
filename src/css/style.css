@@ -1,5 +1,9 @@
 body {
-  margin-top: 20px;
+  margin: auto 0;
+}
+.content {
+ margin-left: 5px;
+ height: 100%;
 }
 .note {
   background-image: url('../images/note.png');
