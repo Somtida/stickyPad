@@ -45,6 +45,8 @@ AppDispatcher.register(function(payload) {
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
 
+      break;
+
     case AppConstants.RECEIVE_NOTES:
       console.log('Receivinging Notes...');
 
@@ -56,6 +58,8 @@ AppDispatcher.register(function(payload) {
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
+
+      break;
   }
 
 

@@ -19995,6 +19995,8 @@ AppDispatcher.register(function(payload) {
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
 
+      break;
+
     case AppConstants.RECEIVE_NOTES:
       console.log('Receivinging Notes...');
 
@@ -20006,6 +20008,8 @@ AppDispatcher.register(function(payload) {
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
+
+      break;
   }
 
 
@@ -20019,6 +20023,7 @@ var AppActions = require('../actions/AppActions');
 
 //set apiKey
 let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+
 
 module.exports = {
   addNote(note) {
