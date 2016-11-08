@@ -19874,12 +19874,18 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var Note = React.createClass({displayName: "Note",
+  removeNote(i, j){
+    console.log(i.$oid,j);
+
+  },
   render(){
+    let {note} = this.props;
+    // console.log("note", note);
     return(
       React.createElement("div", {className: "column"}, 
         React.createElement("div", {className: "note"}, 
-          React.createElement("div", null, 
-            this.props.note.text
+          React.createElement("div", {onDoubleClick: this.removeNote.bind(this, note._id)}, 
+            note.text
 
           )
         )
@@ -20023,7 +20029,6 @@ var AppActions = require('../actions/AppActions');
 
 //set apiKey
 let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
-
 
 module.exports = {
   addNote(note) {

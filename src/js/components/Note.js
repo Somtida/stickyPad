@@ -3,12 +3,18 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var Note = React.createClass({
+  removeNote(i, j){
+    console.log(i.$oid,j);
+
+  },
   render(){
+    let {note} = this.props;
+    // console.log("note", note);
     return(
       <div className="column">
         <div className="note">
-          <div>
-            {this.props.note.text}
+          <div onDoubleClick={this.removeNote.bind(this, note._id)}>
+            {note.text}
 
           </div>
         </div>
