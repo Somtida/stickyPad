@@ -19982,6 +19982,9 @@ var AppStore = assign({}, EventEmitter.prototype, {
   getNote() {
     return _notes;
   },
+  removeNote(nodeId) {
+    return _notes;
+  },
   emitChange() {
     this.emit(CHANGE_EVENT);
   },
@@ -20017,9 +20020,6 @@ AppDispatcher.register(function(payload) {
       //Store Save
       AppStore.setNote(action.notes);
 
-      //API Save
-      // AppAPI.setNote(action.notes);
-
       //Emit Change
       AppStore.emit(CHANGE_EVENT);
 
@@ -20050,8 +20050,9 @@ module.exports = AppStore;
 var AppActions = require('../actions/AppActions');
 
 //set apiKey
-let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+// let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
 
+let myAPIkey = 'ru1s2ttVFYczQkbl9ec-ueSrdqEUmuA6';
 module.exports = {
   addNote(note) {
     $.ajax({

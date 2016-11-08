@@ -18,6 +18,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
   getNote() {
     return _notes;
   },
+  removeNote(nodeId) {
+    let index = _notes.findIndex(x => x._id.$oid === noteId);
+    _notes.splice(index,1);
+  },
   emitChange() {
     this.emit(CHANGE_EVENT);
   },
@@ -52,9 +56,6 @@ AppDispatcher.register(function(payload) {
 
       //Store Save
       AppStore.setNote(action.notes);
-
-      //API Save
-      // AppAPI.setNote(action.notes);
 
       //Emit Change
       AppStore.emit(CHANGE_EVENT);

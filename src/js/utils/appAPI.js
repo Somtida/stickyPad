@@ -25,6 +25,9 @@ module.exports = {
         console.log(err);
       }.bind(this),
     })
-  }
+  },
+  removeNotes(noteId) {
+
+  },
 
 }
