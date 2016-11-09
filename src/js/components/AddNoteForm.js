@@ -18,11 +18,11 @@ var AddNoteForm = React.createClass({
         <form onSubmit={this.onSubmit}>
           <div className="row">
 
-            <div className="large-12 columns">
-              <label>Note Text
-                <input type="text" ref="text" placeholder="Enter Text..."/>
-              </label>
-              <button className="button info expand">
+            <div className="columns">
+              <label>Note Text</label>
+              <input type="text" ref="text" placeholder="Enter Text..."/>
+
+              <button className="button expand">
                 Add
               </button>
             </div>

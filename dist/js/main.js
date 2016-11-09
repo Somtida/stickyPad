@@ -19805,11 +19805,11 @@ var AddNoteForm = React.createClass({displayName: "AddNoteForm",
         React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "row"}, 
 
-            React.createElement("div", {className: "large-12 columns"}, 
-              React.createElement("label", null, "Note Text", 
-                React.createElement("input", {type: "text", ref: "text", placeholder: "Enter Text..."})
-              ), 
-              React.createElement("button", {className: "button info expand"}, 
+            React.createElement("div", {className: "columns"}, 
+              React.createElement("label", null, "Note Text"), 
+              React.createElement("input", {type: "text", ref: "text", placeholder: "Enter Text..."}), 
+
+              React.createElement("button", {className: "button expand"}, 
                 "Add"
               )
             )
@@ -19859,7 +19859,7 @@ var App = React.createClass({displayName: "App",
       React.createElement("div", null, 
         React.createElement("div", {className: "off-canvas-wrapper"}, 
           React.createElement("div", {className: "off-canvas-wrapper-inner", "data-off-canvas-wrapper": true}, 
-            React.createElement("div", {className: "off-canvas position-left reveal-for-large", "data-off-canvas": true, "data-position": "left"}, 
+            React.createElement("div", {className: "off-canvas position-left reveal-for-large info", "data-off-canvas": true, "data-position": "left"}, 
               React.createElement("div", {className: "row colum"}, 
                 React.createElement("br", null), 
                  React.createElement(AddNoteForm, null)
@@ -20057,6 +20057,7 @@ var AppActions = require('../actions/AppActions');
 
 //set apiKey
 let myAPIkey = 'rbl9eu1d2ttVKYczQkc-ueSrdqKNmiA9';
+
 
 module.exports = {
   addNote(note) {

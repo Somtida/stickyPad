@@ -34,7 +34,7 @@ var App = React.createClass({
       <div>
         <div className="off-canvas-wrapper">
           <div className="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-            <div className="off-canvas position-left reveal-for-large" data-off-canvas data-position="left">
+            <div className="off-canvas position-left reveal-for-large info" data-off-canvas data-position="left">
               <div className="row colum">
                 <br/>
                  <AddNoteForm />
